@@ -1,0 +1,24 @@
+{
+  "name": "CV_web",
+  "authors": [
+    "Valentin Draganov <vdraganov@hotmail.co.uk>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "polymer": "Polymer#^1.8.1",
+    "app-route": "PolymerElements/app-route#^1.0.0",
+    "iron-selector": "PolymerElements/iron-selector#^1.5.2",
+    "paper-button": "PolymerElements/paper-button#^1.0.15"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

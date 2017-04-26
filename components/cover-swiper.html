@@ -1,0 +1,114 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="cover-swiper">
+	<style>
+    :host {
+      width: 100%;
+      height: 100%;
+      background-color: red;
+    }
+
+    :host::content #background_image {
+        background: var(--background-image-url, url("../assets/imageGallery/cover_0.jpg")) no-repeat left center;
+        background-position : calc(100%) 0;
+        filter: grayscale(80%) blur(3px);
+        /*drop-shadow(16px 16px 10px rgba(0,0,0,0.9));*/
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-size: cover;
+
+        animation: fadein 4s;
+        -moz-animation: fadein 4s; /* Firefox */
+        -webkit-animation: fadein 4s; /* Safari and Chrome */
+        -o-animation: fadein 4s; /* Opera */
+    }
+
+    :host::content .pagination-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 60vh;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    :host::content .pagination-nav-marker {
+        margin: 0 5px;
+        border-radius: 2px;
+        width: 55px;
+        height: 7px;
+        background-color: rgba(255,255,255,0.9);
+    }
+
+    :host::content .pagination-nav-marker[selected] {
+        background-color: rgba(4,181,181,0.9);
+    }
+
+  </style>
+	<template>
+    <div id="background_image"></div>
+    <div class="pagination-nav">
+	  <template is="dom-repeat" items="[[imageGallery]]" as="paginationMarker" indexAs="index">
+      <div class="pagination-nav-marker" on-tap="setSelected"></div>
+    </template>
+    </div>
+	</template>
+	<script>
+		Polymer({
+			is: 'cover-swiper',
+
+      properties: {
+        imageGallery: Array,
+				navEnabled: {
+					type: Boolean,
+					value: false
+				}
+      },
+
+			behaviors: [],
+
+      setPeginationInitialMarker: function() {
+        if (!this.imageGallery) return;
+        this.querySelector('.pagination-nav-marker').setAttribute('selected', true);
+      },
+
+      attached: function() {
+				Polymer.RenderStatus.afterNextRender(this, function() {
+					this.setPeginationInitialMarker();
+				});
+        setInterval(this.changeImage.bind(this), 3000);
+      },
+
+			setSelected: function(e) {
+				if (this.navEnabled) {
+					console.dir(e.target);
+				}
+				e.target.setAttribute('selected', true);
+			},
+
+      changeImage: function() {
+          var shownBackgroundImg = this.querySelectorAll('.pagination-nav-marker');
+
+          for (i = 0; i < shownBackgroundImg.length; i++) {
+              if (shownBackgroundImg[i].hasAttribute('selected')) {
+                  var k = ((i + 1) < shownBackgroundImg.length) ? (i + 1) : 0;
+                  this._updateCoverImage(k);
+                  shownBackgroundImg[i].removeAttribute('selected');
+                  shownBackgroundImg[k].setAttribute('selected', true);
+                  break;
+              };
+          };
+        },
+
+        _updateCoverImage: function(nextImage) {
+          this.customStyle['--background-image-url'] = "url(\"../assets/imageGallery/cover_" + nextImage + ".jpg\")";
+          this.updateStyles();
+        }
+		});
+	</script>
+</dom-module>

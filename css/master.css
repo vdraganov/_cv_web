@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis');
+
+:root {
+    --filter-blur-prop: 3px;
+    min-width: 360px;
+}
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  font-family: 'Dosis', sans-serif;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9;
+}
+
+header {
+    position: relative;
+    background-color: rgba(0,0,0,1);
+    width: 100vw;
+    height: 68vh;
+}
+
+section {
+    background-color: rgba(4,181,181,1);
+    width: 100vw;
+    height: 26vh;
+}
+
+footer {
+     background-color: rgba(255,255,255,1);
+     width: 100vw;
+     height: 6vh;
+}
+
+footer > span {
+  font-family: 'Dosis', sans-serif;
+  line-height: 6vh;
+  margin-left: 90px;
+}
+
+@keyframes fadein {
+    from {
+        filter: grayscale(80%) blur(20px);
+        opacity: 0.25;
+    }
+    to {
+        filter: grayscale(80%) blur(3px);
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        filter: grayscale(80%) blur(20px);
+        opacity: 0.25;
+    }
+    to {
+        filter: grayscale(80%) blur(3px);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        filter: grayscale(80%) blur(20px);
+        opacity: 0.25;
+    }
+    to {
+        filter: grayscale(80%) blur(3px);
+        opacity: 1;
+    }
+}
+
+@-o-keyframes fadein { /* Opera */
+    from {
+        filter: grayscale(80%) blur(20px);
+        opacity: 0.25;
+    }
+    to {
+        filter: grayscale(80%) blur(3px);
+        opacity: 1;
+    }
+}
+
+@keyframes expand {
+    from {
+        /*background-color: var(--paper-cyan-50);*/
+    }
+    to {
+      margin: 0px;
+      position: absolute;
+      top: 0px;
+      /*width: auto;*/
+      bottom: 0px;
+      left: 0px;
+      background-color: rgba(4,181,181, 0.5);
+    }
+}
+
+@media
+(min-device-width: 920px)
+and (max-device-width: 1920px) {
+
+    #background_image {
+        zoom: 1;
+        /*background-size: cover;*/
+    }
+}
+
+@media
+(min-device-width: 600px)
+and (max-device-width: 920px) {
+
+    #background_image {
+        zoom: 1.4;
+    }
+}
+
+@media
+(min-device-width: 240px)
+and (max-device-width: 600px) {
+
+    #background_image {
+        zoom: 2;
+    }
+}

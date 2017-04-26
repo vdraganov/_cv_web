@@ -1,0 +1,122 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../components/ctom-button.html">
+
+<dom-module id="nav-menu">
+    <style>
+
+    :host {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: auto;
+      z-index: 9;
+    }
+
+    :host[_is-open] {
+        -webkit-transition: all 2.5s ease;
+        background-color: #ffc107;
+    }
+
+    :host.mobileWidth {
+        width: 320px;
+    }
+
+    :host.desktopWidth {
+      width: 64px;
+    }
+
+    :host.desktopWidth:hover, :host.mobileWidth .button {
+      width: auto;
+    }
+
+    .button {
+		margin: 10px 5px;
+		width: 52px;
+		height: 52px;
+		border: 1px solid aliceblue;
+		border-radius: 5px;
+	}
+	#home::before {
+		/*background: url("../assets/icons/home-icon.png") no-repeat center;*/
+        content: url(../assets/icons/home-icon.png);
+        font-size: 46px;
+        padding-left: 9px;
+	}
+	#resume::before {
+		/*background: url("../assets/icons/resume-icon.png") no-repeat center;*/
+        content: url(../assets/icons/resume-icon.png);
+        font-size: 46px;
+        padding-left: 9px;
+	}
+	#feedback::before {
+		/*background: url("../assets/icons/feedback-icon.png") no-repeat center;*/
+        content: url(../assets/icons/feedback-icon.png);
+        font-size: 46px;
+        padding-left: 9px;
+	}
+
+    .description {
+        display: none
+    }
+    :host.mobileWidth .description, .button:hover .description {
+        display: inline-block;
+    }
+    /*::before {
+        content: url(../assets/icons/home-icon.png);
+    }*/
+	a:hover .button {
+		width: 250px;
+	}
+
+    :host::content div.header {
+        background-color: rgb(0,255,0);
+        height: 10vh;
+        width: 100%;
+    }
+
+    </style>
+    <template>
+      <template is="dom-if" if="{{_isOpen}}" restamp>
+          <div class="header">
+              The menu is opened
+          </div>
+          <iron-selector selected="{{categoryData.category}}" attr-for-selected="data-page">
+              <a data-page="home" href="#/home">
+                  <div id="home" class="button"><span class="description">home</span></div>
+              </a>
+              <a data-page="resume" href="#/resume">
+                  <div id="resume" class="button"><span class="description">resume</span></div>
+              </a>
+              <a data-page="feedback" href="#/feedback">
+                  <div id="feedback" class="button"><span class="description">feedback</span></div>
+              </a>
+          </iron-selector>
+      </template>
+      <ctom-button on-tap="_toogleMenu" toggles type="toggler" class="desktopWidth" img-src="./assets/icons/home-icon.png"></ctom-button>
+    </template>
+    <script>
+        Polymer({
+			is: 'nav-menu',
+
+			properties: {
+                isMobile: Boolean,
+                _isOpen: {
+                  type: Boolean,
+                  value: false,
+                  reflectToAttribute: true
+                }
+            },
+
+            // observers: {
+            //     'isMobile()'
+            // }
+
+			behaviors: [],
+
+            _toogleMenu: function(e) {
+                this._isOpen = !this._isOpen;
+            }
+		});
+    </script>
+</dom-module>

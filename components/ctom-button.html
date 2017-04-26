@@ -1,0 +1,102 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-styles/color.html">
+
+<dom-module id="ctom-button">
+  <style is="custom-style">
+    /*#container {
+      display: flex;
+    }*/
+    paper-button {
+      font-family: 'Roboto', 'Noto', sans-serif;
+      font-weight: normal;
+      -webkit-font-smoothing: antialiased;
+      min-width: 44px;
+      min-height: 44px;
+      padding: 0px;
+    }
+
+    paper-button.paper-fixed-bottom-left {
+        position: fixed;
+        left: 4px;
+        bottom: 6px;
+    }
+
+    paper-button.paper-fixed-top-left {
+        position: fixed;
+        left: 4px;
+        top: 6px;
+    }
+
+    paper-button.cyan {
+      background-color: var(--paper-cyan-400);
+      color: white;
+      z-index: 10;
+    }
+
+    paper-button.cyan[active] {
+      /*z-index: 2;*/
+      /*margin: 0px;
+      position: absolute;*/
+      /*top: 0px;*/
+      /*width: auto;*/
+      /*bottom: 0px;*/
+      /*left: 0px;*/
+      background-color: rgb(255,0,0);
+      display: none;
+      /*background-color: var(--paper-cyan-50);*/
+      /*animation: expand 4s;
+      -moz-animation: expand 4s; /* Firefox
+      -webkit-animation: expand 4s; /* Safari and Chrome
+      -o-animation: expand 4s; /* Opera */
+    }
+
+    paper-button.desktopWidth[active] {
+      /*width: 64px;*/
+    }
+
+    paper-button.disabled {
+      color: white;
+    }
+
+    /* icons */
+    :host paper-button::before {
+        content: url(../assets/icons/home-icon.png);
+    }
+  </style>
+    <template>
+      <!-- <paper-button toggles raised class="desktopWidth cyan paper-fixed-bottom-left"> -->
+      <paper-button on-tap="toggleMenuBarIcon" toggles raised class="desktopWidth cyan paper-fixed-top-left">
+        <template is="dom-if" if="{{imgSrc}}">
+          <!-- <img src="[[imgSrc]]"/> -->
+        </template>
+      </paper-button>
+      <!-- <paper-button on-tap="attached" toggles raised class="desktopWidth cyan paper-fixed-bottom-left">
+      </paper-button> -->
+    </template>
+    <script>
+        Polymer({
+			is: 'ctom-button',
+            // extends: 'paper-button',
+
+    		properties: {
+                imgSrc: String
+            },
+
+            attached: function() {
+                this.toggleMenuBarIcon();
+            },
+
+            toggleMenuBarIcon: function(e) {
+                // console.log("tap");
+                // if (!this.parentNode._isOpen) {
+                //     this.querySelector('.paper-fixed-top-left').removeAttribute('hidden');
+                // } else {
+                //     this.querySelector('.paper-fixed-top-left').setAttribute('hidden', true);
+                // };
+            },
+
+			behaviors: []
+		});
+    </script>
+</dom-module>
